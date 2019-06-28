@@ -1,19 +1,27 @@
-import posts from '../api/posts'
+import reddit from '../api/reddit'
 import { POSTS_LOADED } from './actionTypes'
 
 const initialState = {
-  postList: []
+  postList: [],
+  subReddits: []
 }
 
 const actions = {
   loadPosts({ commit }, filters) {
-    window.console.log('LOADING POSTS')
-    posts
+    reddit
       .get(filters)
       .then(response => {
         commit(POSTS_LOADED, response.data.data.children)
       })
       .catch(e => window.console.log(e))
+  },
+  loadSubReddits({commit}) {
+    reddit
+    .getSubReddits()
+    .then(response => {
+      commit(POSTS_LOADED, response.data.data.children)
+    })
+    .catch(e => window.console.log(e))
   }
 }
 

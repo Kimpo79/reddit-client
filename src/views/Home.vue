@@ -10,7 +10,7 @@ export default {
     Grid
   },
   mounted() {
-    this.$store.dispatch("posts/loadPosts", {});
+    this.$store.dispatch("reddit/loadPosts", {});
   }
 };
 </script>
